@@ -1,0 +1,25 @@
+---
+resources:
+- ../base
+
+images:
+- name: nginx
+  # newName: my-nginx
+  newTag: 1.21.6
+configMapGenerator:
+- name: config
+  literals:
+  - env=staging
+- name: credentials
+  files:
+  - credentials=creds.txt
+secretGenerator:
+- name: username
+  literals:
+  - username=admin
+- name: region
+  files:
+  - region=region.txt
+- name: password
+  envs:
+  - .env
