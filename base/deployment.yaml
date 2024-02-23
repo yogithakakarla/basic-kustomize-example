@@ -27,10 +27,6 @@ spec:
             configMapKeyRef:
               name: config
               key: env
-        volumeMounts:
-        - name: credentials
-          mountPath: /etc/config
-        env:
         - name: USERNAME
           valueFrom:
             secretKeyRef:
@@ -46,6 +42,9 @@ spec:
             secretKeyRef:
               name: password
               key: PASSWORD
+        volumeMounts:
+        - name: credentials
+          mountPath: /etc/config
     volumes:
       - name: credentials
         configMap:
